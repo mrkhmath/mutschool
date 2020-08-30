@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center mt-5">مدرسة المتنبي </h1>
+      <h1 className="text-center mt-5">مدرسة المتنبي -حلقة ثانية </h1>
       <h3 className="text-center mt-5">ادخل رقم الطالب لمعرفة نوع التعلم</h3>
       <div
         className="group-form d-inline-flex p-2"
