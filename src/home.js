@@ -11,24 +11,24 @@ const Home = () => {
       });
       const jsonData = await response.json();
      
-        if (jsonData.edutype === "DL") {
-          document.getElementById("edutype").innerHTML =
-            "تعلم عن بعد من المنزل";
-          document.getElementById("ename").innerHTML = jsonData.ename;
-          document.getElementById("home").innerHTML = jsonData.home;
-        } else {
-          document.getElementById("edutype").innerHTML =
-            "تعلم واقعي - من المدرسة";
-          document.getElementById("ename").innerHTML = jsonData.ename;
-          document.getElementById("home").innerHTML = jsonData.home;
-        }
+        // if (jsonData.edutype === "DL") {
+        //   document.getElementById("edutype").innerHTML =
+        //     "تعلم عن بعد من المنزل";
+        //   document.getElementById("ename").innerHTML = jsonData.ename;
+        //   document.getElementById("home").innerHTML = jsonData.home;
+        // } else {
+        //   document.getElementById("edutype").innerHTML =
+        //     "تعلم واقعي - من المدرسة";
+        //   document.getElementById("ename").innerHTML = jsonData.ename;
+        //   document.getElementById("home").innerHTML = jsonData.home;
+        // }
       
-    } catch (err) {
-      document.getElementById("ename").innerHTML = "يرجي التأكد من رقم الطالب";
+    // } catch (err) {
+      document.getElementById("ename").innerHTML = "التطبيق يخضع للتحديث";
       document.getElementById("edutype").innerHTML = "";
       document.getElementById("home").innerHTML = "";
-    }
-  };
+    // }
+  // };
 
   return (
     <div className="container">
