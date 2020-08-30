@@ -10,25 +10,23 @@ const Home = () => {
         body: JSON.stringify(body),
       });
       const jsonData = await response.json();
-     
-        // if (jsonData.edutype === "DL") {
-        //   document.getElementById("edutype").innerHTML =
-        //     "تعلم عن بعد من المنزل";
-        //   document.getElementById("ename").innerHTML = jsonData.ename;
-        //   document.getElementById("home").innerHTML = jsonData.home;
-        // } else {
-        //   document.getElementById("edutype").innerHTML =
-        //     "تعلم واقعي - من المدرسة";
-        //   document.getElementById("ename").innerHTML = jsonData.ename;
-        //   document.getElementById("home").innerHTML = jsonData.home;
-        // }
-      
-    // } catch (err) {
+
+      // if (jsonData.edutype === "DL") {
+      //   document.getElementById("edutype").innerHTML =
+      //     "تعلم عن بعد من المنزل";
+      //   document.getElementById("ename").innerHTML = jsonData.ename;
+      //   document.getElementById("home").innerHTML = jsonData.home;
+      // } else {
+      //   document.getElementById("edutype").innerHTML =
+      //     "تعلم واقعي - من المدرسة";
+      //   document.getElementById("ename").innerHTML = jsonData.ename;
+      //   document.getElementById("home").innerHTML = jsonData.home;
+      // }
       document.getElementById("ename").innerHTML = "التطبيق يخضع للتحديث";
       document.getElementById("edutype").innerHTML = "";
       document.getElementById("home").innerHTML = "";
-    // }
-  // };
+    } catch (err) {}
+  };
 
   return (
     <div className="container">
