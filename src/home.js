@@ -10,22 +10,24 @@ const Home = () => {
         body: JSON.stringify(body),
       });
       const jsonData = await response.json();
-
-      // if (jsonData.edutype === "DL") {
-      //   document.getElementById("edutype").innerHTML =
-      //     "تعلم عن بعد من المنزل";
-      //   document.getElementById("ename").innerHTML = jsonData.ename;
-      //   document.getElementById("home").innerHTML = jsonData.home;
-      // } else {
-      //   document.getElementById("edutype").innerHTML =
-      //     "تعلم واقعي - من المدرسة";
-      //   document.getElementById("ename").innerHTML = jsonData.ename;
-      //   document.getElementById("home").innerHTML = jsonData.home;
-      // }
-      document.getElementById("ename").innerHTML = "التطبيق يخضع للتحديث";
+     
+        if (jsonData.edutype === "DL") {
+          document.getElementById("edutype").innerHTML =
+            "تعلم عن بعد من المنزل";
+          document.getElementById("ename").innerHTML = jsonData.ename;
+          document.getElementById("home").innerHTML = jsonData.home;
+        } else {
+          document.getElementById("edutype").innerHTML =
+            "تعلم واقعي - من المدرسة";
+          document.getElementById("ename").innerHTML = jsonData.ename;
+          document.getElementById("home").innerHTML = jsonData.home;
+        }
+      
+    } catch (err) {
+      document.getElementById("ename").innerHTML = "يرجي التأكد من رقم الطالب";
       document.getElementById("edutype").innerHTML = "";
       document.getElementById("home").innerHTML = "";
-    } catch (err) {}
+    }
   };
 
   return (
@@ -49,6 +51,7 @@ const Home = () => {
         <h5 id="ename"></h5>
         <h5 id="home"></h5>
         <h5 id="edutype"></h5>
+        <h4 href={jsonData.link}>رابط قناة التيمز</h4>
       </blockquote>
     </div>
   );
