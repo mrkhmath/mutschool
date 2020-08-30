@@ -51,7 +51,7 @@ const Home = () => {
         <h5 id="ename"></h5>
         <h5 id="home"></h5>
         <h5 id="edutype"></h5>
-        <h4 href={jsonData.link}>رابط قناة التيمز</h4>
+        <h4 >رابط قناة التيمز</h4>
       </blockquote>
     </div>
   );
