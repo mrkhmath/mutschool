@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 const Home = () => {
   const [input, setinput] = useState("");
+  const [link, setLink] = useState("");
   const getdata = async (num) => {
     try {
       const body = { esis: num };
@@ -10,19 +11,20 @@ const Home = () => {
         body: JSON.stringify(body),
       });
       const jsonData = await response.json();
+      setLink(jsonData.link);
+      if (jsonData.edutype === "DL") {
+        document.getElementById("edutype").innerHTML = "تعلم عن بعد من المنزل";
+        document.getElementById("ename").innerHTML = jsonData.ename;
+        document.getElementById("home").innerHTML = jsonData.home;
+        document.getElementById("link").innerHTML = "رابط قناة التيمز";
      
-        if (jsonData.edutype === "DL") {
-          document.getElementById("edutype").innerHTML =
-            "تعلم عن بعد من المنزل";
-          document.getElementById("ename").innerHTML = jsonData.ename;
-          document.getElementById("home").innerHTML = jsonData.home;
-        } else {
-          document.getElementById("edutype").innerHTML =
-            "تعلم واقعي - من المدرسة";
-          document.getElementById("ename").innerHTML = jsonData.ename;
-          document.getElementById("home").innerHTML = jsonData.home;
-        }
-      
+      } else {
+        document.getElementById("edutype").innerHTML =
+          "تعلم واقعي - من المدرسة";
+        document.getElementById("ename").innerHTML = jsonData.ename;
+        document.getElementById("home").innerHTML = jsonData.home;
+        document.getElementById("link").innerHTML = "رابط قناة التيمز";
+      }
     } catch (err) {
       document.getElementById("ename").innerHTML = "يرجي التأكد من رقم الطالب";
       document.getElementById("edutype").innerHTML = "";
@@ -51,7 +53,7 @@ const Home = () => {
         <h5 id="ename"></h5>
         <h5 id="home"></h5>
         <h5 id="edutype"></h5>
-        <h4 >رابط قناة التيمز</h4>
+        <a href={link} id="link"></a>
       </blockquote>
     </div>
   );
