@@ -45,7 +45,11 @@ const Home = () => {
           className="form-control"
           onChange={(e) => setinput(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={() => getdata(input)}>
+        <button className="btn btn-primary"
+        
+        onClick={() => getdata(input)}
+        onMouseEnter={()=>document.getElementById("link").innerHTML=""}
+        >
           ابحث
         </button>
       </div>
