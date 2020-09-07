@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from './nav';
+import Dashboard from './dashboard'
+
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Nav/>
+    <Dashboard/>
   </React.StrictMode>,
   document.getElementById('root')
 );
