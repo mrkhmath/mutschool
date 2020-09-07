@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Fragment } from "react";
 const Home = () => {
   const [input, setinput] = useState("");
   const [link, setLink] = useState("");
+ 
   const getdata = async (num) => {
     try {
       const body = { esis: num };
@@ -17,7 +19,6 @@ const Home = () => {
         document.getElementById("ename").innerHTML = jsonData.ename;
         document.getElementById("home").innerHTML = jsonData.home;
         document.getElementById("link").innerHTML = "رابط قناة التيمز";
-     
       } else {
         document.getElementById("edutype").innerHTML =
           "تعلم واقعي - من المدرسة";
@@ -33,33 +34,37 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
-      <h1 className="text-center mt-5">مدرسة المتنبي </h1>
-      <h3 className="text-center mt-5">ادخل رقم الطالب لمعرفة نوع التعلم</h3>
-      <div
-        className="group-form d-inline-flex p-2"
-        style={{ marginLeft: "15%", marginTop: "10%" }}
-      >
-        <input
-          type="text"
-          className="form-control"
-          onChange={(e) => setinput(e.target.value)}
-        />
-        <button className="btn btn-primary"
-        
-        onClick={() => getdata(input)}
-        onMouseEnter={()=>document.getElementById("link").innerHTML=""}
+    <Fragment>
+      <div className="container">
+        <h1 className="text-center mt-5">مدرسة المتنبي </h1>
+        <h3 className="text-center mt-5">ادخل رقم الطالب لمعرفة نوع التعلم</h3>
+        <div
+          className="group-form d-inline-flex p-2"
+          style={{ marginLeft: "15%", marginTop: "10%" }}
         >
-          ابحث
-        </button>
+          <input
+            type="text"
+            className="form-control"
+            onChange={(e) => setinput(e.target.value)}
+          />
+          <button
+            className="btn btn-primary ml-2"
+            onClick={() => getdata(input)}
+            onMouseEnter={() =>
+              (document.getElementById("link").innerHTML = "")
+            }
+          >
+            ابحث
+          </button>
+        </div>
+        <blockquote className="blockquote text-center mt-5 ">
+          <h5 id="ename"></h5>
+          <h5 id="home"></h5>
+          <h5 id="edutype"></h5>
+          <a href={link} id="link"></a>
+        </blockquote>
       </div>
-      <blockquote className="blockquote text-center mt-5 ">
-        <h5 id="ename"></h5>
-        <h5 id="home"></h5>
-        <h5 id="edutype"></h5>
-        <a href={link} id="link"></a>
-      </blockquote>
-    </div>
+    </Fragment>
   );
 };
 
