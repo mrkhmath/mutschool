@@ -3,17 +3,27 @@ const ClassLists = () => {
   const [homeroom, setHomeroom] = useState("");
   const [type, setType] = useState("");
   const [group, setGroup] = useState("");
-  const getGroup =async () => {
+  const getGroup = async () => {
     try {
-        const response = await fetch("https://mutanabi.herokuapp.com/count");
-        const jsonData = await response.json();
+      const response = await fetch("https://mutanabi.herokuapp.com/count");
+      const jsonData = await response.json();
       if (type !== "DL" || type !== "school") {
-        const group = jsonData.filter(
-          (s) => s.home === homeroom && s.edutype === type
-        );
+        const group = jsonData.filter((s) => s.grade === type);
       }
-      const group = jsonData.filter((s) => s.grade === type);
 
+      const group = jsonData.filter(
+        (s) => s.home === homeroom && s.edutype === type
+      );
+      console.log(group);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  const getGroupall = async () => {
+    try {
+      const response = await fetch("https://mutanabi.herokuapp.com/count");
+      const jsonData = await response.json();
+      const group = jsonData.filter((s) => s.home === homeroom);
       console.log(group);
     } catch (err) {
       console.log(err.message);
@@ -27,7 +37,11 @@ const ClassLists = () => {
   const exportPdf = () => {
     getGroup();
   };
-  const exportxls = () => {};
+  const exportPdfall = () => {
+    getGroupall();
+  };
+  const exportxls = () => { getGroup();};
+  const exportxlsall = () => { getGroupall();};
   return (
     <>
       <table class="table">
@@ -126,7 +140,7 @@ const ClassLists = () => {
                 <button
                   type="button"
                   className="btn btn-danger mr-1"
-                  onClick={() => exportPdf()}
+                  onClick={() => exportPdfall()}
                   onMouseEnter={() => {
                     setType("Grade 5");
                   }}
@@ -230,7 +244,7 @@ const ClassLists = () => {
                 <button
                   type="button"
                   className="btn btn-danger mr-1"
-                  onClick={() => exportPdf()}
+                  onClick={() => exportPdfall()}
                   onMouseEnter={() => {
                     setType("Grade 6");
                   }}
@@ -338,7 +352,7 @@ const ClassLists = () => {
                 <button
                   type="button"
                   className="btn btn-danger mr-1"
-                  onClick={() => exportPdf()}
+                  onClick={() => exportPdfall()}
                   onMouseEnter={() => {
                     setType("Grade 7");
                   }}
@@ -443,7 +457,7 @@ const ClassLists = () => {
                 <button
                   type="button"
                   className="btn btn-danger mr-1"
-                  onClick={() => exportPdf()}
+                  onClick={() => exportPdfall()}
                   onMouseEnter={() => {
                     setType("Grade 8 ");
                   }}
