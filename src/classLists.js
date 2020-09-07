@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 const ClassLists = () => {
   const [homeroom, setHomeroom] = useState("");
   const [type, setType] = useState("");
-  const [group, setGroup] = useState("");
+  const [group, setGroup] = useState([]);
+
   const getGroup = async () => {
     try {
       const response = await fetch("https://mutanabi.herokuapp.com/count");
       const jsonData = await response.json();
       if (type !== "DL" || type !== "school") {
-        const group = jsonData.filter((s) => s.grade === type);
+        const arr= jsonData.filter((s) => s.grade === type);
+        const stu=arr.map()
       }
 
-      const group = jsonData.filter(
+      const arr = jsonData.filter(
         (s) => s.home === homeroom && s.edutype === type
       );
-      console.log(group);
+      
     } catch (err) {
       console.log(err.message);
     }
@@ -30,18 +34,35 @@ const ClassLists = () => {
     }
   };
 
-  //   useEffect(() => {
-
-  //   }, []);
+  useEffect(() => {
+    getGroup();
+  }, []);
 
   const exportPdf = () => {
-    getGroup();
+    
+    console.log(group);
+    const doc = new jsPDF();
+    doc.autoTable({ html: "#my-table" });
+
+    doc.autoTable({
+      head: [["Name", "Email", "Country"]],
+      body: [
+        ["David", "david@example.com", "Sweden"],
+        ["Castille", "castille@example.com", "Spain"],
+        // ...
+      ],
+    });
+    doc.save(homeroom + "/" + type);
   };
   const exportPdfall = () => {
     getGroupall();
   };
-  const exportxls = () => { getGroup();};
-  const exportxlsall = () => { getGroupall();};
+  const exportxls = () => {
+    getGroup();
+  };
+  const exportxlsall = () => {
+    getGroupall();
+  };
   return (
     <>
       <table class="table">
