@@ -10,12 +10,11 @@ const Dashboard = () => {
   const [grade7sc, setGrade7sc] = useState("");
   const [grade8sc, setGrade8sc] = useState("");
   const [a, seta] = useState(0);
-  const [students, setStudents] = useState([]);
+
   const getCounts = async () => {
     try {
       const response = await fetch("https://mutanabi.herokuapp.com/count");
       const jsonData = await response.json();
-      setStudents(jsonData);
       const arrgrade5DL = jsonData.filter(
         (s) => s.grade === "Grade 5" && s.edutype === "DL"
       );
@@ -33,7 +32,7 @@ const Dashboard = () => {
 
       const arrgrade8DL = jsonData.filter((s) => s.grade === "Grade 8 ");
       setGrade8Dl(arrgrade8DL.length);
-      
+
       //school students
       const arrgrade5sc = jsonData.filter(
         (s) => s.grade === "Grade 5" && s.edutype === "school"
@@ -154,9 +153,7 @@ const Dashboard = () => {
         </>
       )}
 
-      <ClassLists
-  students={students}
-      />
+      <ClassLists />
     </div>
   );
 };
